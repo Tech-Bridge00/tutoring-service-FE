@@ -59,8 +59,8 @@ export default function Header({
   };
 
   return (
-    <header className="w-dvw h-[30px] py-2 mx-auto px-5 flex justify-between items-center max-w-[390px]">
-      <div className="flex items-center">
+    <header className="w-dvw py-2 fixed top-0 left-0 right-0 z-50  bg-white mx-auto px-5 flex justify-between items-center max-w-[390px]">
+      <div className="flex items-center justify-center">
         {showBackButton && (
           <button
             onClick={handleBackClick}

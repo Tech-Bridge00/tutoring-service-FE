@@ -1,6 +1,7 @@
 import { createBrowserRouter, type LoaderFunction } from "react-router";
 import App from "../../App";
 
+// 홈 페이지 데이터 로더
 const homeLoader: LoaderFunction = async () => {
   return { message: "Welcome to Tech Bridge" };
 };
@@ -8,7 +9,7 @@ const homeLoader: LoaderFunction = async () => {
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component: App,
+    element: <App />,
     loader: homeLoader,
     children: [
       {
