@@ -13,6 +13,16 @@ type HeaderProps = {
   onFaqClick?: () => void;
 };
 
+/**
+ * Header component
+ * @param title - 헤더 제목
+ * @param showBackButton - 뒤로가기 버튼 표시 여부
+ * @param showAlarmButton - 알람 버튼 표시 여부
+ * @param showFaqButton - FAQ 버튼 표시 여부
+ * @param onBackClick - 뒤로가기 버튼 callback function, 없으면 뒤로가기
+ * @param onAlarmClick - 알람 버튼 callback function, 없으면 알람 페이지로 이동
+ * @param onFaqClick - FAQ 버튼 callback function, 없으면 FAQ 페이지로 이동
+ */
 export default function Header({
   title,
   showBackButton = true,
