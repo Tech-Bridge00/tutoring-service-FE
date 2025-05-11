@@ -9,7 +9,7 @@
  *   isSelected={false}
  *   onToggle={() => setSelected(!selected)}
  * />
- * 
+ *
  * // variant와 size 지정
  * <Chip
  *   label="프론트엔드"
@@ -33,47 +33,49 @@
  * 4. 변경된 isSelected 값에 따라 UI 스타일 업데이트
  */
 
+import cn from '../../shared/lib/cn';
+
 /**
  * Chip 컴포넌트 프롭스 타입
  */
 type ChipProps = {
-  /** 칩에 표시될 텍스트 */
   label: string;
-  /** 칩의 선택 상태 */
   isSelected: boolean;
-  /** 클릭 시 호출될 함수 */
   onToggle: () => void;
-  /** 칩 변형 - 선생님/학생 스타일 */
   variant?: 'teacher' | 'student';
-  /** 칩 크기 */
   size?: 'sm' | 'md' | 'lg';
 };
 
 /**
  * Chip 컴포넌트
  */
-export default function Chip({ 
-  label, 
-  isSelected, 
+export default function Chip({
+  label,
+  isSelected,
   onToggle,
   variant = 'student',
-  size = 'md' 
+  size = 'md',
 }: ChipProps) {
   // 변형에 따른 선택 색상 결정
-  const selectedBorderColor = variant === 'teacher' ? 'border-[#D9C9E2]' : 'border-[#CAE4F7]';
-  
+  const selectedBorderColor =
+    variant === 'teacher' ? 'border-[#D9C9E2]' : 'border-[#CAE4F7]';
+
   // 크기에 따른 스타일 결정
   const sizeStyles = {
     sm: 'max-w-[70px] h-[28px] text-xs px-2',
     md: 'max-w-[85px] h-[35px] text-xs px-3',
-    lg: 'max-w-[100px] h-[42px] text-sm px-4'
+    lg: 'max-w-[100px] h-[42px] text-sm px-4',
   };
 
   return (
     <div
-      className={`${sizeStyles[size]} border-2 ${
-        isSelected ? selectedBorderColor : 'border-[#d9d9d9]'
-      } rounded-[17.5px] flex items-center justify-center cursor-pointer`}
+      className={cn(
+        `${sizeStyles[size]} border-2 rounded-[17.5px] flex items-center whitespace-nowrap justify-center cursor-pointer`,
+        {
+          [selectedBorderColor]: isSelected,
+          'border-[#d9d9d9]': !isSelected,
+        }
+      )}
       onClick={onToggle}
     >
       {label}
