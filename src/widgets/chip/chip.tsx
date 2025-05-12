@@ -33,6 +33,7 @@
  * 4. 변경된 isSelected 값에 따라 UI 스타일 업데이트
  */
 
+import type { ComponentProps } from 'react';
 import cn from '../../shared/lib/cn';
 
 /**
@@ -44,7 +45,7 @@ type ChipProps = {
   onToggle: () => void;
   variant?: 'teacher' | 'student';
   size?: 'sm' | 'md' | 'lg';
-};
+} & ComponentProps<'div'>;
 
 /**
  * Chip 컴포넌트
@@ -55,6 +56,7 @@ export default function Chip({
   onToggle,
   variant = 'student',
   size = 'md',
+  ...props
 }: ChipProps) {
   // 변형에 따른 선택 색상 결정
   const selectedBorderColor =
@@ -67,14 +69,18 @@ export default function Chip({
     lg: 'max-w-[100px] h-[42px] text-sm px-4',
   };
 
+  const { className, ...restProps } = props;
+
   return (
     <div
+      {...restProps}
       className={cn(
         `${sizeStyles[size]} border-2 rounded-[17.5px] flex items-center whitespace-nowrap justify-center cursor-pointer`,
         {
           [selectedBorderColor]: isSelected,
           'border-[#d9d9d9]': !isSelected,
-        }
+        },
+        className // 외부에서 전달된 className을 병합
       )}
       onClick={onToggle}
     >
