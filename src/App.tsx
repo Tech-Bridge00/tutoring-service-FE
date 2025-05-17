@@ -1,6 +1,6 @@
 function App() {
 
-  return <div className='w-dvw h-dvh'></div>;
+  return <div className='w-dvw h-dvh p-8'></div>;
 
 }
 
