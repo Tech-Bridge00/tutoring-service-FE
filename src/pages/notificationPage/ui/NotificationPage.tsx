@@ -1,28 +1,59 @@
-import Button from '../../../widgets/button/Button';
+import { useState } from 'react';
+import ConfirmContent from './ConfirmContent';
+import RoutingContent from './RoutingContent';
+import { mockNotifications } from '../types/notification';
+import type { Notification } from '../types/notification';
 
+/**
+ * 알림 페이지 컴포넌트
+ *
+ * 알림 목록을 표시하고 타입에 따라 다른 동작을 수행합니다.
+ * - route 타입: 클릭 시 지정된 경로로 이동
+ * - confirm 타입: 클릭 시 수락/거부 버튼 표시
+ */
 export default function NotificationPage() {
+  // 클릭된 confirm 타입 알림의 ID를 저장하는 상태
+  const [clickedId, setClickedId] = useState<number | null>(null);
+
+  const handleConfirmClick = (id: number) => {
+    setClickedId(id);
+  };
+
+  const handleConfirm = (id: number) => {
+    console.log(`알림 ${id} 수락됨`);
+    setClickedId(null);
+  };
+
+  const handleReject = (id: number) => {
+    console.log(`알림 ${id} 거부됨`);
+    setClickedId(null);
+  };
+
   return (
     <div className='max-w-[390px] mx-auto px-[5px]'>
-      <div className='bg-gradient-to-b from-[#cae4f7] to-[#d9c9e280] px-3 rounded-2xl'>
-        <div className='flex justify-between items-center w-full py-6'>
-          <span className='text-base'> 박요셉님이 과외를 신청하셨습니다.</span>
-          <span className='text-base text-[#999999]'>1시간 전</span>
-        </div>
-        <div className='w-full flex items-center justify-around px-14 pb-4'>
-          <Button
-            label='수락'
-            variant='outline'
-            theme='student'
-            className='w-30 bg-white h-[30px]'
-          />
-          <Button
-            label='거부'
-            variant='outline'
-            theme='teacher'
-            className='w-30 bg-white h-[30px]'
-          />
-        </div>
-      </div>
+      <section className='flex flex-col gap-2'>
+        {mockNotifications.map((notification: Notification) => (
+          <div key={notification.id} className='mb-2'>
+            {notification.type === 'route' ? (
+              <RoutingContent
+                path={notification.path || '/'}
+                title={notification.title}
+                time={notification.time}
+              />
+            ) : (
+              <div onClick={() => handleConfirmClick(notification.id)}>
+                <ConfirmContent
+                  isClicked={clickedId === notification.id}
+                  title={notification.title}
+                  time={notification.time}
+                  onConfirm={() => handleConfirm(notification.id)}
+                  onReject={() => handleReject(notification.id)}
+                />
+              </div>
+            )}
+          </div>
+        ))}
+      </section>
     </div>
   );
 }
