@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router";
-import ArrowLeft from "../../assets/arrowLeft.svg?react";
-import Faq from "../../assets/faq.svg?react";
-import Alarm from "../../assets/alarm.svg?react";
+import { useNavigate } from 'react-router';
+import ArrowLeft from '../../assets/arrowLeft.svg?react';
+import Faq from '../../assets/faq.svg?react';
+import Alarm from '../../assets/alarm.svg?react';
 
 type HeaderProps = {
   title: string;
@@ -46,7 +46,7 @@ export default function Header({
     if (onAlarmClick) {
       onAlarmClick();
     } else {
-      navigate("/notifications");
+      navigate('/notifications');
     }
   };
 
@@ -54,43 +54,43 @@ export default function Header({
     if (onFaqClick) {
       onFaqClick();
     } else {
-      navigate("/faq");
+      navigate('/faq');
     }
   };
 
   return (
-    <header className="w-dvw py-2 fixed top-0 left-0 right-0 z-50  bg-white mx-auto px-5 flex justify-between items-center max-w-[390px]">
-      <div className="flex items-center justify-center">
+    <header className='w-dvw py-2 fixed top-0 left-0 right-0 z-50  bg-white mx-auto px-2 flex justify-between items-center max-w-[390px]'>
+      <div className='flex items-center justify-center'>
         {showBackButton && (
           <button
             onClick={handleBackClick}
-            aria-label="Back"
-            className="w-5 h-5 relative aspect-auto flex items-center justify-center cursor-pointer"
+            aria-label='Back'
+            className='w-5 h-5 relative aspect-auto flex items-center justify-center cursor-pointer'
           >
             <ArrowLeft />
           </button>
         )}
       </div>
 
-      <h1 className="text-2xl font-bold text-[#CAE4F7]">{title}</h1>
+      <h1 className='text-2xl font-bold text-[#CAE4F7]'>{title}</h1>
 
-      <div className="flex gap-1 items-center">
+      <div className='flex gap-1 items-center'>
         {showAlarmButton && (
           <button
             onClick={handleAlarmClick}
-            aria-label="Notifications"
-            className="w-5 h-5 relative aspect-auto flex items-center justify-center cursor-pointer"
+            aria-label='Notifications'
+            className='w-5 h-5 relative aspect-auto flex items-center justify-center cursor-pointer'
           >
-            <Alarm className="object-cover" />
+            <Alarm className='object-cover' />
           </button>
         )}
         {showFaqButton && (
           <button
             onClick={handleFaqClick}
-            aria-label="FAQ"
-            className="w-5 h-5 relative aspect-auto flex items-center justify-center cursor-pointer"
+            aria-label='FAQ'
+            className='w-5 h-5 relative aspect-auto flex items-center justify-center cursor-pointer'
           >
-            <Faq className="object-cover" />
+            <Faq className='object-cover' />
           </button>
         )}
       </div>
