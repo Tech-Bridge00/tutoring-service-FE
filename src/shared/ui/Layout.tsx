@@ -50,7 +50,9 @@ export function BaseLayout({
     <div className='flex flex-col min-h-dvh'>
       <Header {...mergedHeaderProps} />
 
-      <main className='flex-1 pt-14 pb-15 flex basis-full'>{children}</main>
+      <main className='flex-1 pt-14 pb-15 flex basis-full grow-0'>
+        {children}
+      </main>
 
       {showFooter && <Footer theme={theme} />}
     </div>
