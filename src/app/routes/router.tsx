@@ -6,7 +6,7 @@ import {
   MainLayout,
   NotificationLayout,
 } from '../../shared/ui/Layout';
-import ChatPage from '@/pages/chatPage/ChatPage';
+import ChatPage from '@/pages/chatPage/ui/ChatPage';
 
 // 홈 페이지 데이터 로더
 const homeLoader: LoaderFunction = async () => {
