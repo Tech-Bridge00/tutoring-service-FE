@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router';
-import Header from '../../widgets/header/Header';
-import Footer from '../../widgets/footer/Footer';
 import type { ComponentProps, PropsWithChildren } from 'react';
+import Footer from '@/widgets/footer/Footer';
+import Header from '@/widgets/header/Header';
 
 /**
  * 기본 레이아웃 컴포넌트 props
@@ -128,3 +128,22 @@ export function NotificationLayout() {
   );
 }
 
+/**
+ * 채팅 페이지 레이아웃 컴포넌트
+ *
+ * 채팅 페이지에 적합한 헤더와 푸터 구성을 제공합니다.
+ * 헤더에는 뒤로가기 버튼만 표시되고, 알람과 FAQ 버튼은 숨겨집니다.
+ */
+export function ChatLayout() {
+  return (
+    <RouterLayout
+      theme='student'
+      headerProps={{
+        title: '채팅',
+        showBackButton: true,
+        showAlarmButton: false,
+        showFaqButton: false,
+      }}
+    />
+  );
+}
