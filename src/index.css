@@ -7,6 +7,9 @@
   .chat-tag-left {
     @apply absolute left-[-6px] -top-[2px] w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-r-12 border-r-[#CAE4F7] rotate-20;
   }
+  .chat-input {
+    @apply min-h-[35px] max-h-[120px] w-[330px] max-w-full rounded-xl py-1 pl-3 pr-8 bg-white focus:outline-none break-words whitespace-pre-wrap overflow-y-auto;
+  }
 }
 
 .hide-scrollbar {
