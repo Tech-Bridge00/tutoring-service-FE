@@ -75,7 +75,6 @@ export default function Header({
       <h1 className='flex-1 text-2xl font-bold text-[#CAE4F7] text-center'>
         {title}
       </h1>
-
       <div className='flex-none min-w-10 flex gap-1 items-center justify-end'>
         {showAlarmButton && (
           <button

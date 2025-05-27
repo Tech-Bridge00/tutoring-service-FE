@@ -54,7 +54,6 @@ export function BaseLayout({
       <main className='flex-1 pt-14 pb-15 flex basis-full grow-0'>
         {children}
       </main>
-
       {showFooter && <Footer theme={theme} />}
     </div>
   );
@@ -131,7 +130,6 @@ export function NotificationLayout() {
     />
   );
 }
-
 /**
  * 채팅 페이지 레이아웃 컴포넌트
  *
@@ -163,3 +161,4 @@ export function ChatLayout({
     />
   );
 }
+
