@@ -42,6 +42,7 @@ export function BaseLayout({
     showBackButton: true,
     showAlarmButton: true,
     showFaqButton: true,
+    showFooter: true,
   };
 
   const mergedHeaderProps = { ...defaultHeaderProps, ...headerProps };
@@ -82,9 +83,10 @@ type RouterLayoutProps = Omit<BaseLayoutProps, 'children'>;
 export function RouterLayout({
   theme = 'student',
   headerProps = {},
-}: RouterLayoutProps) {
+  showFooter = true,
+}: RouterLayoutProps & { showFooter?: boolean }) {
   return (
-    <BaseLayout theme={theme} headerProps={headerProps}>
+    <BaseLayout theme={theme} headerProps={headerProps} showFooter={showFooter}>
       <Outlet />
     </BaseLayout>
   );

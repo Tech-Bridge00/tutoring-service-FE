@@ -7,6 +7,8 @@ import {
   NotificationLayout,
 } from '../../shared/ui/Layout';
 import ChatPage from '@/pages/chatPage/ui/ChatPage';
+import { chatRoomLoader } from '@/pages/chatPage/model/chatRoomLoader';
+import ChatRoom from '@/pages/chatPage/ui/ChatRoom';
 
 // 홈 페이지 데이터 로더
 const homeLoader: LoaderFunction = async () => {
@@ -40,11 +42,22 @@ export const router = createBrowserRouter([
   },
   {
     path: '/chat',
-    element: <ChatLayout />,
+    element: <ChatLayout showFooter={true} headerTitle='채팅' />,
     children: [
       {
         index: true,
         element: <ChatPage />,
+      },
+    ],
+  },
+  {
+    path: '/chat/:id',
+    element: <ChatLayout showFooter={false} />,
+    loader: chatRoomLoader,
+    children: [
+      {
+        index: true,
+        element: <ChatRoom />,
       },
     ],
   },
