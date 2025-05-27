@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router';
+import { Outlet, useLoaderData } from 'react-router';
 import type { ComponentProps, PropsWithChildren } from 'react';
 import Footer from '@/widgets/footer/Footer';
 import Header from '@/widgets/header/Header';
@@ -138,16 +138,28 @@ export function NotificationLayout() {
  * 채팅 페이지에 적합한 헤더와 푸터 구성을 제공합니다.
  * 헤더에는 뒤로가기 버튼만 표시되고, 알람과 FAQ 버튼은 숨겨집니다.
  */
-export function ChatLayout() {
+// shared/ui/Layout.tsx
+export function ChatLayout({
+  showFooter = true,
+  headerTitle,
+}: {
+  showFooter?: boolean;
+  headerTitle?: string;
+}) {
+  // loader에서 받은 데이터 활용 (chat/:id인 경우)
+  const data = useLoaderData() as { userName?: string };
+  const title = data?.userName || headerTitle || '채팅';
+
   return (
     <RouterLayout
       theme='student'
       headerProps={{
-        title: '채팅',
+        title,
         showBackButton: true,
         showAlarmButton: false,
         showFaqButton: false,
       }}
+      showFooter={showFooter}
     />
   );
 }
