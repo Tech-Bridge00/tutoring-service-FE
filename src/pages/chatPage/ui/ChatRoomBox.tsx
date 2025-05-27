@@ -9,7 +9,7 @@ type ChatBoxProps = {
   img: string;
 };
 
-export function ChatRoomBox({
+export default function ChatRoomBox({
   roomId,
   name,
   message,

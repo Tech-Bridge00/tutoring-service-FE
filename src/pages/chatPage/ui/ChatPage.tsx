@@ -1,4 +1,5 @@
-import { ChatBg, ChatRoomBox } from '@/pages/chatPage/ui';
+import ChatBg from './ChatBg';
+import ChatRoomBox from './ChatRoomBox';
 
 export default function ChatPage() {
   return (
