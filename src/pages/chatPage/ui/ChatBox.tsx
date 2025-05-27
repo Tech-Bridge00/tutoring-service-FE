@@ -1,4 +1,7 @@
+import { useNavigate } from 'react-router';
+
 type ChatBoxProps = {
+  roomId: string;
   name: string;
   message: string;
   count: number;
@@ -6,9 +9,25 @@ type ChatBoxProps = {
   img: string;
 };
 
-export function ChatBox({ name, message, count, time, img }: ChatBoxProps) {
+export function ChatBox({
+  roomId,
+  name,
+  message,
+  count,
+  time,
+  img,
+}: ChatBoxProps) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/chat/${roomId}`);
+  };
+
   return (
-    <div className='flex items-center justify-between gap-2 w-full bg-white h-[90px] min-h-[90px] rounded-[20px] mt-7 px-4 shadow-[0_10px_30px_#D7E3EB]'>
+    <div
+      onClick={handleClick}
+      className='flex items-center justify-between gap-2 w-full bg-white h-[90px] min-h-[90px] rounded-[20px] mt-7 px-4 shadow-[0_10px_30px_#D7E3EB] cursor-pointer'
+    >
       <div className='bg-gray-300 rounded-full w-[50px] h-[50px] min-w-[50px] relative aspect-auto'>
         <img
           src={img}
