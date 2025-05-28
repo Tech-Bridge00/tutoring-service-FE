@@ -59,8 +59,8 @@ export default function Header({
   };
 
   return (
-    <header className='w-dvw py-2 fixed top-0 left-0 right-0 z-50  bg-white mx-auto px-2 flex justify-between items-center max-w-[390px]'>
-      <div className='flex items-center justify-center'>
+    <header className='w-dvw py-2 fixed top-0 left-0 right-0 z-50 bg-white mx-auto px-2 flex items-center max-w-[390px]'>
+      <div className='flex-none min-w-10 flex items-center justify-start'>
         {showBackButton && (
           <button
             onClick={handleBackClick}
@@ -72,9 +72,10 @@ export default function Header({
         )}
       </div>
 
-      <h1 className='text-2xl font-bold text-[#CAE4F7]'>{title}</h1>
-
-      <div className='flex gap-1 items-center'>
+      <h1 className='flex-1 text-2xl font-bold text-[#CAE4F7] text-center'>
+        {title}
+      </h1>
+      <div className='flex-none min-w-10 flex gap-1 items-center justify-end'>
         {showAlarmButton && (
           <button
             onClick={handleAlarmClick}

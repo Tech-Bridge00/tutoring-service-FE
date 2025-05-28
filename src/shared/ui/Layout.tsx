@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router';
-import Header from '../../widgets/header/Header';
-import Footer from '../../widgets/footer/Footer';
+import { Outlet, useLoaderData } from 'react-router';
 import type { ComponentProps, PropsWithChildren } from 'react';
+import Footer from '@/widgets/footer/Footer';
+import Header from '@/widgets/header/Header';
 
 /**
  * 기본 레이아웃 컴포넌트 props
@@ -42,6 +42,7 @@ export function BaseLayout({
     showBackButton: true,
     showAlarmButton: true,
     showFaqButton: true,
+    showFooter: true,
   };
 
   const mergedHeaderProps = { ...defaultHeaderProps, ...headerProps };
@@ -50,8 +51,9 @@ export function BaseLayout({
     <div className='flex flex-col min-h-dvh'>
       <Header {...mergedHeaderProps} />
 
-      <main className='flex-grow pt-14 pb-16'>{children}</main>
-
+      <main className='flex-1 pt-14 pb-15 flex basis-full grow-0'>
+        {children}
+      </main>
       {showFooter && <Footer theme={theme} />}
     </div>
   );
@@ -80,9 +82,10 @@ type RouterLayoutProps = Omit<BaseLayoutProps, 'children'>;
 export function RouterLayout({
   theme = 'student',
   headerProps = {},
-}: RouterLayoutProps) {
+  showFooter = true,
+}: RouterLayoutProps & { showFooter?: boolean }) {
   return (
-    <BaseLayout theme={theme} headerProps={headerProps}>
+    <BaseLayout theme={theme} headerProps={headerProps} showFooter={showFooter}>
       <Outlet />
     </BaseLayout>
   );
@@ -124,6 +127,37 @@ export function NotificationLayout() {
         showAlarmButton: false,
         showFaqButton: false,
       }}
+    />
+  );
+}
+/**
+ * 채팅 페이지 레이아웃 컴포넌트
+ *
+ * 채팅 페이지에 적합한 헤더와 푸터 구성을 제공합니다.
+ * 헤더에는 뒤로가기 버튼만 표시되고, 알람과 FAQ 버튼은 숨겨집니다.
+ */
+// shared/ui/Layout.tsx
+export function ChatLayout({
+  showFooter = true,
+  headerTitle,
+}: {
+  showFooter?: boolean;
+  headerTitle?: string;
+}) {
+  // loader에서 받은 데이터 활용 (chat/:id인 경우)
+  const data = useLoaderData() as { userName?: string };
+  const title = data?.userName || headerTitle || '채팅';
+
+  return (
+    <RouterLayout
+      theme='student'
+      headerProps={{
+        title,
+        showBackButton: true,
+        showAlarmButton: false,
+        showFaqButton: false,
+      }}
+      showFooter={showFooter}
     />
   );
 }
