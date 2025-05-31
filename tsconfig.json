@@ -1,7 +1,7 @@
 {
   "files": [],
   "compilerOptions": {
-    "types": ["vite/client"]
+    "types": ["vite/client", "kakao.maps.d.ts"]
   },
   "references": [
     { "path": "./tsconfig.app.json" },

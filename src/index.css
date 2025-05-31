@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @layer components {
   .chat-tag-right {
@@ -10,6 +10,9 @@
   .chat-input {
     @apply min-h-[35px] max-h-[120px] w-[330px] max-w-full rounded-xl py-1 pl-3 pr-8 bg-white focus:outline-none break-words whitespace-pre-wrap overflow-y-auto;
   }
+  .page-wrapper {
+    @apply w-full max-w-[390px] h-[calc(100dvh-116px)] mx-auto;
+  }
 }
 
 .hide-scrollbar {
@@ -20,4 +23,3 @@
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
-
