@@ -1,5 +1,4 @@
 import { createBrowserRouter, type LoaderFunction } from 'react-router';
-import App from '../../App';
 import NotificationPage from '../../pages/notificationPage/ui/NotificationPage';
 import {
   ChatLayout,
@@ -9,7 +8,7 @@ import {
 import ChatPage from '@/pages/chatPage/ui/ChatPage';
 import { chatRoomLoader } from '@/pages/chatPage/model/chatRoomLoader';
 import ChatRoom from '@/pages/chatPage/ui/ChatRoom';
-
+import MapPage from '@/pages/mapPage/ui/MapPage';
 
 // 홈 페이지 데이터 로더
 const homeLoader: LoaderFunction = async () => {
@@ -23,7 +22,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <App />,
+        element: <MapPage />,
         loader: homeLoader,
       },
     ],
@@ -43,7 +42,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/chat',
-    element: <ChatLayout showFooter={true} headerTitle='채팅' />,
+    element: <ChatLayout showFooter={true} headerTitle="채팅" />,
     children: [
       {
         index: true,
@@ -59,7 +58,6 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <ChatRoom />,
-
       },
     ],
   },
